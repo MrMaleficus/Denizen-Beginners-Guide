@@ -6,86 +6,88 @@ Your First Task Script
     :local:
 ```
 
-### Task Script Basics
+### Script de tâche : la base
 
-A task script is a stand-alone script that can be run either via in-game command with the [/ex command](/guides/first-steps/ex-command), or by the `run` command in a script.
+Un script de tâche (Task Script) est un script autonome qui peut soit être éxécuté in-game avec la [commande /ex](/guides/first-steps/ex-command), or part la commande `run` ou `inject` dans un autre script.
 
-Task scripts will run all of the Denizen commands that they include. A task script can be simple, it can be complicated, and it can even run other task scripts. This is useful to create logic-based script chains, like dialogue options or random content.
+Les scripts de tâche éxécutent toutes les commandes Denizen qu'ils contiennent. Ce type de script peut être très simple comme très élaboré et peut également appeler l'éxécution d'autres scripts. Les scripts de tâche sont utiles pour créer des tâches logiques, répétives ou ponctuelles : génération de lignes de dialogue, gestion d'effets de particules, création d'un contenu aléatoire...
 
-### Task Script Syntax
+D'une certaine façon, les scripts de tâches sont les briques éléments qui peuvent constituer la plupart des scripts sur votre serveur.
 
-Here's an example of a basic task script.
+### Script de tâche : Syntaxe
+
+Voici un exemple basique d'un script de tâche.
 
 ```dscript_green
-example_task:
+tache_exemple:
     type: task
     script:
-    - narrate "This is a basic task script!"
+    - narrate "Ceci est un script de tâche !"
 ```
 
-This script will narrate the text: `This is a basic task script!` to the player attached to the script. If you use the `/ex` command to run this script - specifically, by running `/ex run example_task` in-game, *you* will be the attached player.
+Ce script affichera une ligne de chat avec pour texte: `Ceci est un script de tâche !` au joueur attaché au script. Si vous utilisez la commande `/ex` pour éxécuter ce script - spécifiquement, en utilisant `/ex run tache_exemple` dans le jeu, *vous* serez le joueur attaché au script.
 
-Note that this script sample is highlighted in green. That means it's good enough that you could copy/paste it and it will work. Farther down this page there's a script example highlighted in blue, meaning it's a good example but some part needs to be filled in. Later on you'll see examples in red, indicating that those examples are what to *not* do. For more information on this highlighting system, refer to [This Guide - Sample Scripts](/guides/this-guide/sample-scripts).
+NB : Cet échantillon de script est contouré en vert. Cela signifie qu'il est fonctionnl et qu'il peut être copié/collé pour vous en servir sur votre serveur. Plus bas se trouve un script contouré en bleu, signifiant qu'il s'agit d'un bon exemple de script, mais qu'il manque certains composants afin qu'il soit fonctionnel et utilisable sur votre serveur. Vous verrez également des scripts contourés en rouge, indiquant des exemples de scripts à ne pas utiliser et illustrant des serveurs à ne *pas* faire. Pour plus d'informations sur les échantillons de script que vous trouvez sur ce guide, rendez-vous sur [This Guide - Sample Scripts](/guides/this-guide/sample-scripts).
 
-### Building Your First Task Script in VS Code
+### Construire son premier script de tâche dans VS Code
 
-Previously, you've learned [how to set up VS Code](/guides/first-steps/script-editor), the editor that we recommend for writing Denizen scripts.
+Précédement, vous avez appris [comment installer VS Code](/guides/first-steps/script-editor), l'éditeur que nous recommandons lorsque vous éditez vos scripts Denizen.
 
-#### Creating the File
+#### Créer le Fichier
 
-To create your first task script, start by opening your scripts folder in VS Code.
+Pour créer votre premier script de tâche, commencez par ouvrir dossier `Denizen` se trouvant dans vos plugins, puis d'ouvrir dans VS Code le dossier `scripts` qui s'y trouve.
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/548218.png)
 ![](https://i.alexgoodwin.media/i/denizen_guide/d2810b.png)
 
-From there, right click the scripts folder in the explorer menu and click the "New File" option.
+D'ici, faîtes un clique droit sur votre dossier `scripts` dans l'exploreur puis cliquez sur "New File" pour créer un nouveau fichier texte, qui contiendra votre script.
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/5fad5b.png)
 
-Type any file name you want, just make sure to end it with `.dsc` - the required extension for a Denizen script file.
+Donner le nom que vous souhaitez à ce fichier, tout en ajoutant l'extension `.dsc` - l'extension des scripts Denizen.
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/e3ec76.png)
 
-Now you can begin writing your first task script!
+Nous allons pouvoir commencer à scripter.
 
-#### Writing the Script
+#### Éditer le Script
 
-Let's start with the core of the script:
+Commençons avec le coeur du script:
 
 ```dscript_blue
-my_first_task:
+ma_premiere_tache:
     type: task
     script:
-    - narrate (sometext)
+    - narrate (texte)
 ```
 
-This example should look familiar - it's very similar to the example above.
+Cet exemple peut sembler familier : il est trés similaire à l'exemple vu précédemment.
 
-#### Script Names
+#### Noms de Script
 
-The name of the script here is `my_first_task`. It's at the top of the indentation <span class="parens">(meaning that there are no spaces at the start of the line, whereas all the other lines have exactly 4 spaces at the start - those are indented farther in)</span>. Each top-level indentation entry is a separate script. Here is an example of two different scripts:
+Le nom du script est ici `ma_premiere_tache`. Il est premier niveau de l'indentation du script <span class="parens">(cela signifie qu'il n'y a aucun espace au début de la ligne, là où toutes les autres lignes démarrent avec au moins 4 espaces d'indentation au début de chaque ligne)</span>. Chaque premier niveau d'indentation constitue un script. Voici un exemple contenant deux scripts:
 
 ```dscript_green
-my_first_task:
+ma_premiere_tache:
     type: task
     script:
-    - narrate "This is is task number one!"
+    - narrate "C'est ma premiére tâche !"
 
-my_second_task:
+ma_seconde_tache:
     type: task
     script:
-    - narrate "This is task number two!"
+    - narrate "C'est ma seconde tâche !"
 ```
 
-This example demonstrates what having two different scripts in the same file looks like. `my_first_task` and `my_second_task` are two different scripts, and each is a fully self-contained script.
+Ce court exemple montre qu'un fichier peut contenir plusieurs scripts. `ma_premiere_tache` et `ma_seconde_tache` sont deux scripts différents qui n'ont aucun lieu entre eux, sinon le fait qu'ils soient dans le même fichier.
 
-Additionally, note that *script names* and *file names* are different. Both `my_first_task` and `my_second_task` could be contained within the same file named `my_first_scripts.dsc`. It's the script name <span class="parens">(that `my_first_task`)</span> that matters, the file name <span class="parens">(`my_first_scripts.dsc`)</span> is entirely for your own personal organization, and will not make any difference to Denizen.
+Par ailleurs, il est important de noter que les *noms de script* et que les *noms de fichiers* sont deux choses différentes. `ma_premiere_tache` et `ma_seconde_tache` peuvent être dans un même fichier intitulé `mes_premiers_scripts.dsc`. L'important est ici le nom du script <span class="parens">(that `ma_premiere_tache`)</span>, le nom du fichier <span class="parens">(`mes_premiers_scripts.dsc`)</span> n'a aucune importance fonctionnelle dans Denizen et dépend simplement de la façon dont vous souhatez organiser vos scripts.
 
-#### Script Types
+#### Types de Scripts
 
-Below the script name - on the second level of indentation - you'll see the `type` key.
+Sous le nom du script - au second niveau de l'indentation - on peut voir une clé `type`.
 
-The `type` key is where you specify which `type` of Denizen script you're writing. In this case, we're writing a `task` script. You may have already seen `world` scripts, `item` scripts, `inventory` scripts, or any of the many other types that exist. For now, we will focus on `task` scripts. You'll learn about the different types as you read through these guides, and you can find explanations about all of them from the meta documentation on the [language explanation page](https://one.denizenscript.com/denizen/lngs/container).
+La clé `type` est l'endroit où vous indiquez le `type` de script Denizen vous créez. Dans le cas présent, on édite script de type `task` (tâche). Il y également des scripts de type  `world`, de type `item` ou encore de type `inventory` scripts et beaucoup d'autres qui remplissent chacun une fonction précise. Nous y reviendrons plus tard. Pour l'heure, concentrons-nous sur les scripts `task`. Vous apprendrez les différences entre ces autres types de script au cours de ces guides, et vous pourrez trouver des explications sommaires sur chacun d'entre eux dans la documentation générales Denizen (en englais) sur la page [language explanation](https://one.denizenscript.com/denizen/lngs/container).
 
 Make sure you write `type: task` in your script on the second level of indentation <span class="parens">(press **enter** to start a new line, then press **tab** to indent once. This will add 4 spaces on the line, and every time you press enter after there will automatically be 4 spaces again, until you press backspace to remove the spaces)</span>, below the script name, like this:
 
