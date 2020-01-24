@@ -89,10 +89,10 @@ Sous le nom du script - au second niveau de l'indentation - on peut voir une cl�
 
 La clé `type` est l'endroit où vous indiquez le `type` de script Denizen vous créez. Dans le cas présent, on édite script de type `task` (tâche). Il y également des scripts de type  `world`, de type `item` ou encore de type `inventory` scripts et beaucoup d'autres qui remplissent chacun une fonction précise. Nous y reviendrons plus tard. Pour l'heure, concentrons-nous sur les scripts `task`. Vous apprendrez les différences entre ces autres types de script au cours de ces guides, et vous pourrez trouver des explications sommaires sur chacun d'entre eux dans la documentation générales Denizen (en englais) sur la page [language explanation](https://one.denizenscript.com/denizen/lngs/container).
 
-Make sure you write `type: task` in your script on the second level of indentation <span class="parens">(press **enter** to start a new line, then press **tab** to indent once. This will add 4 spaces on the line, and every time you press enter after there will automatically be 4 spaces again, until you press backspace to remove the spaces)</span>, below the script name, like this:
+Votre `type: task` doit se trouver au second niveau d'indentation, c'est à dire 4 espaces après le début de votre ligne <span class="parens">(**entrer** pour faire un saut de ligne, puis **tab** pour passer un nouveau d'indentation. VS Code conventira votre tab en 4 espaces. Chaque nouveau saut de ligne vous donnera automatiquement l'indentation précédente, jusqu'à ce que vous retirez manuellement des espaces ou diminuez votre indentation)</span> sous le nom de votre script, comme-çi:
 
 ```dscript_blue
-my_first_task:
+ma_premiere_tache:
     type: task
 ```
 
