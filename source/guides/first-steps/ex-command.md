@@ -1,4 +1,4 @@
-The Ex Command
+La Commande Ex
 --------------
 
 ```eval_rst
@@ -6,35 +6,35 @@ The Ex Command
     :local:
 ```
 
-### So, You Want To Use Denizen
+### Alors comme ça, vous voulez utiliser Denizen ?
 
-If you're reading this page, you're probably new to Denizen and are ready to learn the absolute basics. As you've read on previous pages, Denizen is a *scripting engine*. This means you're gonna write script files full of script code stuff, right? Well, sorta. You don't technically *need* to write scripts in a separate file. For the sake of easing you into the absolute basics of Denizen, we're going to showcase one of Denizen's biggest "selling point" features: you can just write Denizen commands in-game and they work, just like that!
+Si vous lisez cette page, vous êtes très probablement nouveau à Denizen Script et vous êtes prêt à apprendre les bases élémentaires de Denizen. Comme évoqué dans les pages précédentes de ce guide, Denizen est un *moteur de script*. Est-ce que cela signifie que vous allez écrire des fichiers de scripts remplis d'instructions scriptées et codées ? Hé bien, en quelques sortes... Vous n'avez pas *besoin* d'écrire des scripts dans des fichiers séparés. Pour les besoins de ce guide et afin de vous plonger en douceur dans l'univers de Denizen, nous n'allons utiliser qu'une fonction phare de Denizen : vous pouvez écrire des commandes Denizen in-game, et c'est suffisant !
 
-### Denizen Commands vs Server Commands
+### Commandes Denizen vs Commandes Serveur
 
-Before we do that, there's an important distinction to understand: a "Denizen command" vs a "server command".
+Avant d'aller plus loin, il y a une importante distinction à saisir entre une "commande Denizen" et une "commande Serveur".
 
-- A **server command** is a command you can type into the game-chat with a `/` in front of it. So, for example, `/gamemode creative` is a server command.
-- A **Denizen command** is a command that goes into a script, that is processed by the Denizen scripting engine. So, for example, `- narrate "hi <player.name>"` is a Denizen command. Notice that it's indicated with a `-` in front (as is standard with Denizen commands) and can make use of tags (like `<player.name>`), which server commands of course cannot.
+- Une **commande Serveur** est une commande que vous pouvez utilisez directement in-game dans le Chat avec le `/` que vous connaissez très bien !
+- Une **commande Denizen** est une commande qui prend place dans un script Denizen et qui est exécutée par le moteur de script Denizen. Par exemple, `- narrate "salut <player.name>"` est une commande Denizen. Notons qu'un `-` est utilisé et est présent avant la commande (en vertu des standards Denizen) et peut utiliser des tags (comme `<player.name>`), ce que les commandes serveur ne peuvent pas faire.
 
-The important thing to remember is they aren't interchangable. You can't do `/narrate "hi <player.name>"` - it will tell you 'unknown command'. You also can't do `- gamemode creative`, that will give you a script error message.
+Ces commandes ne sont pas interchangeables ! On ne peut pas utiliser `/narrate "salut <player.name>"` - cela vous indiquera 'commande inconnue'. De même, vous ne pouvez pas non plus utiliser `- gamemode creative` dans un script, car cela vous donnera une erreur de script.
 
-### But You Said We Can Write Denizen Commands In-Game
+### Mais tu disais qu'on pouvait utiliser des commandes Denizen in-game...
 
-Yes, I did! For that matter you can write server commands in a script. How? Well there's a Denizen command that executes a server command, and there's a server command that executes a Denizen command.
+C'est vrai ! Mais pour ça, nous allons devoir transformer des commandes Denizen en commandes serveur ! Comment diable fait-on ça ? Il y a une commande serveur qui permet d'exécuter des commandes Denizen, et il y a aussi une commande Denizen qui permet d'exécuter des commandes Serveur.
 
-If you're writing commands in-game, and want to run a Denizen command, just use `/ex`. So, for example: `/ex narrate "hi <player.name>"`. This works because `/ex` is a server command that simply tells Denizen to process the rest of your input. This will look something like this:
+Si vous êtes in-game, et que vous utilisez des commandes Serveur ; pour pouvoir exécuter des commandes Denizen, il faudra utiliser la commande `/ex`. Par exemple : `/ex narrate "salut <player.name>"`. La commande `/ex` est une commande Serveur qui permet de faire l'interface entre les commandes Denizen et les commandes Serveur, indiquant à Denizen les instructions à exécuter. Concréctement, cela ressemble à ça :
 ![](https://i.alexgoodwin.media/i/denizen_guide/a5d1c0.png)
 
-Similarly, if you're writing commands in a script, and want to run a server command, you can use the `- execute` command, like `- execute as_op "gamemode creative"` <span class="parens">(you can also do as_player, as_server, or even as_npc)</span>. Note that for the most part usage of the `- execute` command should be avoided, as almost anything you can do by server command, you can do better through a Denizen command <span class="parens">(for the gamemode example, `- adjust <player> gamemode:creative`)</span>. The only exception is usually commands from other plugins that you want your script to integrate into.
+Inversement, si vous êtes en édition de script et que vous souhaitez, dans ce script, utiliser des commandes serveur ; vous pouvez utilisez la commande denizen `- execute`, comme `- execute as_op "gamemode creative"` <span class="parens">(vous pouvez aussi utiliser `as_player`, `as_server`, ou même `as_npc`)</span>. Notons que dans la plupart des cas, l'utilisation de la commande `- execute` n'est pas recommandée et peut être évitée, car tout ce que peut faire une commande serveur, une commande Denizen peut le faire aussi bien, voire mieux <span class="parens">(Pour l'exemple ci-dessus : `- adjust <player> gamemode:creative`)</span>. La commande `- execute` peut cependant être trés utile si vous souhaitez intégrer des commandes serveur qui sont gérées par d'autres plugins que vous souhaitez intégrer à vos scripts Denizen.
 
-As a special additional note: please remember that `/ex` and `- execute` simply transition from one mode to the other. There is almost never a valid reason to have both of them in use at the same time, as that's just going back-and-forth for no reason. When you think about it, the mere idea sounds completely crazy... but we have actually had users attempt things like `- execute as_server "ex narrate 'hi'"`. Of course, that's just an overcomplicated and silly way of writing `- narrate 'hi'`.
+Nota Bene : `/ex` et `- execute` ont des fonctions opposées mais complémentaires. De façon générale, il n'y a *AUCUNE* raison de les utiliser en même temps sur la même commande. Quand vous y pensez, l'idée de ces les utiliser en même temps est assez folle... mais des utilisateurs ont déjà tenté des choses comme `- execute as_server "ex narrate 'hi'"`. Bien ce genre de commande est un non-sens total où dans un script il suffirait juste d'utiliser `- narrate 'hi'`.
 
-### Wait, Narrating? I Thought We Were Coding Not Writing A Play!
+### Attend... Dans la narration ? Je voulais coder, pas écrire un dialogue !
 
-Don't worry, Denizen is indeed the 'code' type of script, not the 'play' type of script. `narrate` is the first basic Denizen command to learn: it outputs some text to the player's chat view. <span class="parens">(When you use it through `/ex`, you also see Denizen debug information, but in real usage in a script, just the intended line of text will show to players.)</span> This is a very common basic command, and of course is the go-to command for simple testing. This command will be used for things like NPC scripts <span class="parens">(anything the player needs to read but the NPC isn't saying to them - narrate will be used!)</span>, custom server commands <span class="parens">(the response when a player runs your custom server `/command` will be given by a narrate)</span> and so much more!
+Pas d'inquiétude ! La commande `narrate` est la premiére commande Denizen, sinon la plus basique, que vous devez apprendre : elle affiche une ligne de texte dans le Chat du joueur en question. <span class="parens">(Quand vous l'utilisez avec `/ex`, vous verrez également des informations de debug liées à l'exécution de la commande Denizen, mais dans un usage en condition réelle, c'est à dire dans un script, vous ne verrez que la ligne de texte affichée avec `narrate`)</span> C'est une commande basique, très commune et très utile pour tester un tag par exemple. Elle est également utiliser dans des scripts de PNJ <span class="parens">(tout tout ce que le joueur doit lire mais qui n'est pas dit par le PNJ, - la commande narrate peut s'avérer utile !)</span>, dans les commandes serveur customs, <span class="parens">(le texte affiché lorsque le joueur tape dans le Chat une `/commande` que vous avez créé avec Denizen le sera avec l'aide de la commande narrate)</span> et bien plus encore !
 
-### So What Do I Do?
+### Ok. Je fais quoi ?
 
 Well if you haven't caught on yet: open your in-game chat and type `/ex narrate "hi <player.name>"`. This will be a recurring theme throughout this guide: you'll find examples of things you can do and descriptions of what they do and how they work... you won't always be explicitly told to, but you should always go ahead and try them out (on your local test server!). As you get to writing actual script files, there will be examples specifically color-coded to indicate whether you can just copy them in. Please take a moment to open [This Guide: Sample Scripts](/guides/this-guide/sample-scripts) in a new tab to review the color coding system before you continue.
 

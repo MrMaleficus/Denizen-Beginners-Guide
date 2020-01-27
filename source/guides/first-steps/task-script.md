@@ -1,4 +1,4 @@
-Your First Task Script
+Votre Premier Task Script
 ----------------------
 
 ```eval_rst
@@ -87,7 +87,7 @@ Par ailleurs, il est important de noter que les *noms de script* et que les *nom
 
 Sous le nom du script - au second niveau d'indentation - on peut voir une clé `type`.
 
-La clé `type` est l'endroit où vous indiquez le `type` de script Denizen que vous créez. Ici, on édite script de type `task` (tâche). Il y également des scripts de type  `world`, de type `item` ou encore de type `inventory` et beaucoup d'autres qui remplissent chacun un un rôle précis. Nous y reviendrons plus tard : concentrons-nous sur les scripts `task`. Vous apprendrez les différences entre ces autres script au cours de votre apprentissage, et vous pourrez trouver des explications sommaires sur chacun d'entre eux dans la documentation générales Denizen <span class="parens">(en englais)</span> sur la page [language explanation](https://one.denizenscript.com/denizen/lngs/container).
+La clé `type` est l'endroit où vous indiquez le `type` de script Denizen que vous créez. Ici, on édite script de type `task` <span class="parens">(tâche)</span>. Il y également des scripts de type  `world`, de type `item` ou encore de type `inventory` et beaucoup d'autres qui remplissent chacun un un rôle précis. Nous y reviendrons plus tard : concentrons-nous sur les scripts `task`. Vous apprendrez les différences entre ces autres script au cours de votre apprentissage, et vous pourrez trouver des explications sommaires sur chacun d'entre eux dans la documentation générales Denizen <span class="parens">(en englais)</span> sur la page [language explanation](https://one.denizenscript.com/denizen/lngs/container).
 
 Votre `type: task` doit se trouver au second niveau d'indentation, c'est à dire 4 espaces après le début de votre ligne <span class="parens">(**entrer** pour faire un saut de ligne, puis **tab** pour passer un niveau d'indentation. VS Code conventira votre tab en 4 espaces. Chaque nouveau saut de ligne vous donnera automatiquement l'indentation précédente, jusqu'à ce que vous retirez manuellement des espaces ou diminuez votre indentation)</span> sous le nom de votre script, comme-çi:
 
