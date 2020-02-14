@@ -6,22 +6,22 @@ Changing The Path: The If Command
     :local:
 ```
 
-### What Is The 'If' Command?
+### C'est quoi la commande 'if'?
 
-You learned how to use events to run a set of commands whenever a situation occurs on your server. You learned how to use tags to change what any command does based on the details of the situation.
-Now it's time to use the `if` command to combine the two concepts: choosing a set of commands to run based on the details of the situation.
+Vous avez appris à utiliser des events pour exécuter une série de commandes quand une situation donnée se produit sur le serveur. Vous avez appris comment utiliser les tags et à modifier les effets de vos commandes selon les détails de la situation lorsqu'elle se produit.
+Il est maintenant temps de passer au niveau supérieur et d'utiliser la commande `if` afin de combiner ces deux concepts: choisir d'exécuter des commandes selon les détails d'une situation donnée.
 
-The `if` command does exactly what it says on the tin: it says "*if* something is true, then run these commands. Otherwise, don't run them."
+La commande `if` fait exactement ce qu'elle dit : "*si* quelques choses est vrai (true), alors on exécute les commandes suivantes. Autrement, il ne se passe rien."
 
-### So What Does An If Command Look Like?
+### A quoi ça ressemble une commande 'if'?
 
-Don't worry, `if` commands are pretty easy to write, and look just like anything else in a Denizen script does.
+Les commandes `if` sont très faciles à comprendre et à écrire, et ressemblent à n'importe quel autre aspect propre aux scripts Denizen.
 
 Here's the basic format:
 ```dscript_blue
-- if (some condition here):
-    - (some commands)
-    - (go here)
+- if (une condition):
+    - (on va éxécuter les)
+    - (commandes écrites ici)
 ```
 
 As you can see, `if` is a command <span class="parens">(written just like any other at the start, with some condition(s) as its input arguments)</span>
@@ -29,27 +29,27 @@ but with a `:` on the end <span class="parens">(just like you would have on an e
 and some commands spaced out and placed within. The thing to be extra careful about here is the spacing on the commands within.
 If the commands within don't get spaced out a step, Denizen won't know that they were meant to be in the `if`, and just run them regardless of the condition you give.
 
-Let's see how this might look in a real script...
+Voyons voir à quoi ça ressemble dans un vrai script.
 ```dscript_green
-magic_healing_bell:
+cloche_magique:
     type: world
     events:
         on player right clicks bell:
         - if <player.health.percentage> < 25:
             - heal
-            - actionbar "<green>The bell has healed you!"
+            - actionbar "<green>La cloche vous a soigné !"
 ```
 
-This handy sample script will instantly heal a player that clicks on it, but *only if* their health is dangerously low.
-<span class="parens">(We'll expand on this sample script throughout this section, and when we get to the [Flags](flags) section we'll revisit this sample script to add a rate limit, so players can only heal once every few minutes).</span>
+En exactement 7 lignes, on vient de créer un script très simple mais plutôt cool qui va soigner le joueur lorsqu'il clique sur une cloche, mais *seulement si* sa santé est basse.
+<span class="parens">(Nous allons partir de cet exemple et l'étendre au cours de cette section. Quand nous en viendons aux [Flags](flags) nous le revisiterons en y ajoutant une *limite de cadence* (rate limit), afin que les joueurs ne puissent l'utiliser qu'une fois toutes les 4 ou 5 minutes par exemple).</span>
 
 ### Conditions
 
-There's a few different ways to make a condition in an `if` command.
-At its simplest, the condition could be a boolean tag <span class="parens">(one that returns 'true' or 'false')</span>, and that's enough right there. <span class="parens">(For example, `- if <player.on_fire>:`)</span>.
-The `if` sub-commands will run when the tag returns `true`, and won't when it returns `false`.
-You can also invert <span class="parens">(run when the tag is 'false', and don't run when it's 'true')</span> these simple boolean `if` commands using the `!` symbol <span class="parens">(which is read as "not")</span>.
-For example, `- if !<player.on_fire>:` will run only if the player is **not** on fire.
+Il y a plusieurs façons d'écrire une condition dans une commande `if`.
+Au plus simple, la condition peut être un tag booléen <span class="parens">(c'est à dire un tag simple qui retourne 'true' ou 'false')</span> et... c'est tout. <span class="parens">(Par exemple, `- if <player.on_fire>:`)</span>.
+Les sous-commandes associées au `if` s'exécuteront si le tag retourne `true`, mais rien ne se passera si le tag retourne `false`.
+Vous pouvez aussi utilisez une logique inversée <span class="parens">(exécuter les commandes lorsque c'est 'false', et ne pas le faire lorsque c'est 'true')</span> en utilisant le symbôle `!` <span class="parens">(que l'on peut lire en "pas" ou "not")</span>.
+Par exemple, `- if !<player.on_fire>:` va s'exécuter uniquement si le joueur n'est **pas** en feu.
 
 It could also be some value tag <span class="parens">(a tag that returns anything more complicated than a boolean)</span>, in which case it will be compared to some other value.
 The basic format of an `if` command that compares two values is `- if (first value) (comparison) (second value):` <span class="parens">(for example, `- if <player.name> == mcmonkey4eva:`)</span>.
