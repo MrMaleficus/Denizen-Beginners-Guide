@@ -8,60 +8,72 @@ Your First World Script
 
 ### World Script Basics
 
-A world script is a script that is automatically triggered when a given event occurs in the server. They can consist in execute a given task script with the `run` or the `inject` command or specific instructions under an event block.
+Un world script est un script qui s'active ou s'exécuté automatiquement quand un événement donné se produit sur le serveur. They can consist in execute a given task script with the `run` or the `inject` command or specific instructions under an event block.
 
 Like task scripts, world scripts will run all of the Denizen commands that they include when a given event occurs on the server. World scripts are useful when you want to handle an action and determine actions in consequences. World script can listen your players when they interacts with something or help you to create visual interfaces with custom inventories.
 
-## Wait, "an event" ?
+## Attends... "un événement" ?
 
-An event is something that occurs on your server. It can be, for example, fired by an entity doing something, or a player doing something. Let's say we want to prevent players from breaking blocks. We know that there is thing to handle this : the `on player breaks block` event, so we have to monitor this event, listen if the block is an emerald ore block, and cancel the event.
+Un événement (ou event) est quelques choses qui se produit sur le serveur. Il peut être, par exemple, déclenché par une entité en train de faire une certaine action, ou par un joueur en train de faire une certaine action. Admettons, on souhaite exécuter des commandes Denizen lorsqu'un joueur casse un bloc. On sait qu'il existe un event que l'on peut exploiter : l'event `on player breaks block`. On va donc monitorer cet événement et déclencher des actions lorsqu'un joueur casse un bloc.
 
-### World Script Syntax
+### Syntax d'un World Script
 
-Here's an example of a basic functionnal world script.
+Voilà un exemple basique de World Script fonctionnel.
 
 ```dscript_green
-example_world_script:
+mon_premier_world_script:
     type: world
     events:
         on player breaks block:
-        - narrate "You breaked a block!"
+        - narrate "Tu as cassé un bloc !"
 ```
-This script will narrate the text: `You breaked a block!` to the player attached to the event, that is to say every player that breaks a block, everywhere.
+Ce script affichera le texte  Tu as cassé un bloc !` au joueur attaché à l'événement, c'est à dire chaque joueur en train de casser un bloc.
 
-Note that this script sample is highlighted in green. That means it's good enough that you could copy/paste it and it will work, but beware, such a world script with a `on player breaks block:` event will interact with *all* your players breaking *any* blocks *everywhere*, so that can be inconfortable. Let's see of what a world script is made of and how to build it.
+Notons que ce script est contouré en vert, ce qui signifie qu'il peut être copié-collé et utiliser sur votre serveur. Mais attention, un tel world script avec un event `on player breaks block:` va s'éxécuter lorsque *n'importe quel joueur* cassera *n'importe quel bloc* et *n'importe où*, ce qui n'est pas recommandé ! Voyons voir de quoi ce script est constitué avant d'approfondir.
 
-### Building Your World Task Script in VS Code
+### Construire son premier world script dans VS Code
 
-Previously, you've learned [how to set up VS Code](/guides/first-steps/script-editor), the editor that we recommend for writing Denizen scripts.
+Précédemment vous avez appris [how to set up VS Code](/guides/first-steps/script-editor), l'éditeur que nous recommandons quand vous créez vos scripts Denizen.
 
-#### Creating the File
+#### Créer le fichier
 
-To create your first world script, start by opening your scripts folder in VS Code.
+Pour créer votre premier world script, commençez par ouvrir votre dossier scripts dans VS Code.
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/548218.png)
 ![](https://i.alexgoodwin.media/i/denizen_guide/d2810b.png)
 
-From there, right click the scripts folder in the explorer menu and click the "New File" option.
+Ensuite, cliquez sur votre dossier dans l'explorateur puis cliquez sur "New file" pour créer un nouveau fichier
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/5fad5b.png)
 
-Type any file name you want, just make sure to end it with `.dsc` - the required extension for a Denizen script file.
+Donnez le nom que vous voulez ! Il est important d'ajouter l'extension `.dsc` - l'extension officielle des scripts Denizen.
 
 ![](https://i.alexgoodwin.media/i/denizen_guide/e3ec76.png)
 
-Now you can begin writing your first world script!
+On va pouvoir commencer à scripter !
 
-#### Writing the Script
+#### Ecrire le script
 
 Let's start with the core of the script:
 
 ```dscript_blue
-my_first_world_script:
+mon_premier_world_script:
     type: world
     events:
         on player places block:
-        - narrate (sometext)
+        - narrate (dutexte)
 ```
 
-This example should look familiar - it's very similar to the example above, except we use the `on player places block` instead of `on player breaks block`.
+Cet exemple peut sembler familier - il est trés similaire à l'exemple abordé ci-dessus, excepté que l'on utilise `on player places block` au lieu de `on player breaks block`, cela signifie que le script se déclenchera à chaque fois qu'un bloc sera placé par le joueur. Décomposons ce que l'on voit ici.
+
+- `mon_premier_world_script:` est le nom du script, se situant au sommet de l'indentation du script. Il s'agit du nom interne à Denizen qui permettra de l'identifier. Chaque nom de script doit être unique, c'est à dire que plusieurs scripts ne peuvent pas avoir le même nom, ou des erreurs se produiront.
+
+- `type: world` est la clé qui définit le type de script dont il s'agit. Elle est placée au second niveau d'indentation du script, c'est à dire 4 espaces après le niveau un d'indentation. Nous avons pu voir précédemment des scripts de type `task`. Ce type va définir à la fois sa fonction et ses effets. Comme expliqué précédemment, le type `world` est un type de script qui s'active ou s'exécuté automatiquement quand un événement donné se produit sur le serveur.
+
+- `events:` est la clé qui va contenir l'essentiel de vos instructions. Elle est placée au second niveau d'indentation du script, au même niveau que la clé `type` car elle est obligatoire à son fonctionnement. Elle est semblable à la clé `script:` pour les scripts de type `task`. Différence notable : les world scripts n'ont pas de clé `script:` de même que les task scripts n'ont pas de clé `events:`, qui est une particularité propre aux world scripts. A partir de là, le contenu prenant place dans un niveau d'indentation supérieur, c'est à dire 8 espace après le premier et 4 espaces après celui-ci constitue l'essentiel de votre code.
+
+- `on player places block:` est un événement, qui se présente sous la forme d'une clé, et qui va contenir toutes les instructions qui seront exécutées au moment où l'événement indiqué se produira. (En l'espéce, ici : lorsqu'un joueur place un bloc.) Cette clé est personnalisable et peut prendre la forme de n'importe quel événement implanté dans Denizen. La liste de tous les événements exploitables est indiquée ici : https://one.denizenscript.com/denizen/evts/ Les commandes qui seront éxécutées lorsque l'événement se produira sont situées sous cette clé, au même niveau d'indentation que la clé de l'événement, comme dans l'exemple ci-dessus.
+
+
+
+
