@@ -8,13 +8,13 @@ Your First World Script
 
 ### World Script Basics
 
-Un world script est un script qui s'active ou s'exécuté automatiquement quand un événement donné se produit sur le serveur. They can consist in execute a given task script with the `run` or the `inject` command or specific instructions under an event block.
+Un world script est un script qui s'active ou s'exécuté automatiquement quand un événement donné se produit sur le serveur. Ils sont constitués d'une ou plusieurs clés d'événements dans laquelle des instructions sont écrites et éxécutées sous forme de commandes Denizen, tel que les commandes `run` ou `inject` lorsque l'événement en question se produit.
 
-Like task scripts, world scripts will run all of the Denizen commands that they include when a given event occurs on the server. World scripts are useful when you want to handle an action and determine actions in consequences. World script can listen your players when they interacts with something or help you to create visual interfaces with custom inventories.
+Tout comme les scripts Task, les scripts World éxécuteront toutes les commandes Denizen qui les composent lorsque l'événement ciblé se produira sur le serveur. Les scripts World se révélent très utiles, voire essentiels si vous voulez gérer les actions de vos joueurs et déterminer d'autres actions en conséquence, créer des interfaces visuels avec des inventaires personalisés, tracer des actions effectuées par vos joueurs, ou créer des mini-jeux.
 
 ## Attends... "un événement" ?
 
-Un événement (ou event) est quelques choses qui se produit sur le serveur. Il peut être, par exemple, déclenché par une entité en train de faire une certaine action, ou par un joueur en train de faire une certaine action. Admettons, on souhaite exécuter des commandes Denizen lorsqu'un joueur casse un bloc. On sait qu'il existe un event que l'on peut exploiter : l'event `on player breaks block`. On va donc monitorer cet événement et déclencher des actions lorsqu'un joueur casse un bloc.
+Un événement (ou event) est quelques choses qui se produit sur le serveur. Il peut être, par exemple, déclenché par une entité en train de faire quelques choses, ou par un joueur en train de faire une certaine action. Admettons, on souhaite exécuter des commandes Denizen lorsqu'un joueur casse un bloc. On sait qu'il existe un event que l'on peut exploiter : l'event `on player breaks block`. On va donc monitorer cet événement et déclencher des actions lorsqu'un joueur casse un bloc.
 
 ### Syntax d'un World Script
 
@@ -54,7 +54,7 @@ On va pouvoir commencer à scripter !
 
 #### Ecrire le script
 
-Let's start with the core of the script:
+Commençons avec le coeur du World Script:
 
 ```dscript_blue
 mon_premier_world_script:
